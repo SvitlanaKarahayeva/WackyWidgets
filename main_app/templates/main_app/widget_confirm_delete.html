@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="align-center">Delete <span class="blue-text">{{ object.description}}</span></h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Yes-Delete" class="btn red">
+        <a class="blue-text" href="{% url 'index' %}">Cancel - Back to widgets list</a>
+    </form>
+
+{% endblock %}

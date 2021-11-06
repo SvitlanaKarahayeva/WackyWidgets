@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    
+<h1 class="center-align">Wacky Widgets</h1>
+
+{% if widgets %}
+<div class="card">
+    <table>
+        <thead>      
+        <tr>
+            <th>Description</th>
+            <th>Quantity</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+     {% for widget in widgets %}   
+        <tr>
+          <td>{{ widget.description }}</td>
+          <td>{{ widget.quantity }}</td>
+          <td> <a href="{% url 'widget_delete' widget.id %}"><i class="material-icons red-text">delete</i></a></td>
+        </tr>
+        {% endfor %} 
+        <tr>
+            <td><b>Total Quantity:</b></td>
+            <td>{{ total_qnt.quantity__sum }}</td>
+         
+          </tr>
+
+    
+    </tbody>
+  </table>
+</div>
+{% else %}
+
+<h3>No Widgets Exist</h3>
+<hr>
+
+{% endif %}
+
+<h4>Add Widget</h4>
+<!-- Adding widget form -->
+<form action="{% url 'create_widget' %}" method="post">
+    {% csrf_token %}
+    {{ widget_form.as_p }}
+    <input type="submit" class="btn" value="Add Widget">
+</form>
+
+{% endblock %}
