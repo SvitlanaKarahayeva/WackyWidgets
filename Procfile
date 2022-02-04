@@ -1,1 +1,1 @@
-web: gunicorn wackywidgets.wsgi --log-file -
+web gunicorn wackywidgets.wsgi --log-file -
